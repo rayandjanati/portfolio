@@ -258,7 +258,8 @@ SUJETS.forEach((s, i) => {
   panel.className = 'panel';
   let embed;
   if (s.vimeoId) {
-    embed = `<button type="button" class="video-thumb" data-vimeo-id="${s.vimeoId}" aria-label="Lire la vidéo : ${s.title}">
+    embed = `<button type="button" class="video-thumb" data-vimeo-id="${s.vimeoId}" aria-label="Lire la vidéo : ${s.title}"
+         style="background-image:url('https://vumbnail.com/${s.vimeoId}_large.jpg')">
          <span class="play-btn"></span>
        </button>`;
   } else if (s.youtubeId) {
@@ -290,26 +291,10 @@ SUJETS.forEach((s, i) => {
     });
   }
 
-  let thumbLoaded = false;
-  function loadVimeoThumb(){
-    if (thumbLoaded || !s.vimeoId) return;
-    thumbLoaded = true;
-    fetch(`https://vimeo.com/api/oembed.json?url=${encodeURIComponent('https://vimeo.com/' + s.vimeoId)}`)
-      .then(r => r.json())
-      .then(data => {
-        const btn = panel.querySelector('.video-thumb');
-        if (btn && data.thumbnail_url) {
-          btn.style.backgroundImage = `url('${data.thumbnail_url}')`;
-        }
-      })
-      .catch(() => {});
-  }
-
   function toggle(){
     const isOpen = row.classList.toggle('open');
     row.setAttribute('aria-expanded', String(isOpen));
     panel.style.maxHeight = isOpen ? panel.scrollHeight + 'px' : '0px';
-    if (isOpen) loadVimeoThumb();
   }
   row.addEventListener('click', toggle);
   row.addEventListener('keydown', (e) => {
