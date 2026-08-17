@@ -127,6 +127,7 @@
   .video-thumb{
     position:relative;display:block;width:100%;height:100%;
     background-size:cover;background-position:center;text-decoration:none;
+    border:0;padding:0;cursor:pointer;font:inherit;
   }
   .video-thumb::after{
     content:"";position:absolute;inset:0;background:rgba(0,0,0,0.15);transition:background .2s;
@@ -222,20 +223,16 @@
                      un placeholder s'affichera à la place)
    ===================================================================== */
 const SUJETS = [
-  { title: "Canicule : les gagnants, les perdants", category: "France", date: "—", youtubeId: "XC6CltmFF0Q" },
-  { title: "Le démarchage téléphonique raccroche", category: "France", date: "—", youtubeId: "NsUEzI1q8_Q" },
-  { title: "Zidane : le jour Z", category: "France", date: "—", youtubeId: "bNEuLhPwTZ0" },
-  { title: "Éclipse solaire : le meilleur spot", category: "France", date: "—", youtubeId: "SNwAIStPtk0" },
-  { title: "Éclipse solaire : événement historique", category: "France", date: "—", youtubeId: "bX8otwkl5lQ" },
-  { title: "Aude : la stratégie des pompiers", category: "France", date: "—", youtubeId: "ZVLvcE0h3dQ" },
-  { title: "Aude : frapper vite et fort", category: "France", date: "—", youtubeId: "hZZIfIXCHhw" },
-  { title: "Lège Cap Ferret : le difficile retour", category: "France", date: "—", youtubeId: "t_2WBqTPeVI" },
-  { title: "Feuilles d'automne en été", category: "France", date: "—", youtubeId: "zQDZTRovwTM" },
-  { title: "Éruption Fuego Guatemala : 1700 personnes évacuées", category: "International", date: "—", youtubeId: "fGo3l_gPuAo" },
-  { title: "Éclipse solaire : le soleil a rendez-vous avec la lune", category: "France", date: "—", youtubeId: "WJbk1MUPHb4" },
-  { title: "L'Iran attaque des pétroliers et des réservoirs", category: "International", date: "—", youtubeId: "L3PAGPdJJ8I" },
-  { title: "Hausse des prix à la pompe : les vols se multiplient !", category: "France", date: "—", youtubeId: "JQww7Z1VrUg" },
-  { title: "Bonne Mère restaurée : l'émotion des marseillais", category: "France", date: "—", youtubeId: "Vg9pnWVLVmQ" }
+  { title: "Aude : frapper vite et fort", category: "France", date: "—", vimeoId: "1218871545" },
+  { title: "L'Iran attaque des pétroliers et des réservoirs", category: "International", date: "—", vimeoId: "1218871857" },
+  { title: "Éclipse solaire : le meilleur spot", category: "France", date: "—", vimeoId: "1218871546" },
+  { title: "Zidane : le jour Z", category: "France", date: "—", vimeoId: "1218871859" },
+  { title: "Le démarchage téléphonique raccroche", category: "France", date: "—", vimeoId: "1218871547" },
+  { title: "Canicule : les gagnants, les perdants", category: "France", date: "—", vimeoId: "1218871856" },
+  { title: "Éruption Fuego Guatemala : 1700 personnes évacuées", category: "International", date: "—", vimeoId: "1218871565" },
+  { title: "Marseille : le facteur n'est pas passé…", category: "France", date: "—", vimeoId: "1218871858" },
+  { title: "Lège Cap Ferret : le difficile retour", category: "France", date: "—", vimeoId: "1218871560" },
+  { title: "Feuilles d'automne en été", category: "France", date: "—", vimeoId: "1218871548" }
 ];
 
 const list = document.getElementById('rundownList');
@@ -259,19 +256,40 @@ SUJETS.forEach((s, i) => {
 
   const panel = document.createElement('div');
   panel.className = 'panel';
-  const embed = s.youtubeId
-    ? `<a class="video-thumb" href="https://www.youtube.com/watch?v=${s.youtubeId}" target="_blank" rel="noopener"
+  let embed;
+  if (s.vimeoId) {
+    embed = `<button type="button" class="video-thumb" aria-label="Lire la vidéo : ${s.title}"
+         style="background-image:url('https://vumbnail.com/${s.vimeoId}.jpg')">
+         <span class="play-btn"></span>
+       </button>`;
+  } else if (s.youtubeId) {
+    embed = `<a class="video-thumb" href="https://www.youtube.com/watch?v=${s.youtubeId}" target="_blank" rel="noopener"
          style="background-image:url('https://img.youtube.com/vi/${s.youtubeId}/hqdefault.jpg')">
          <span class="play-btn"></span>
          <span class="watch-label">Voir sur YouTube</span>
-       </a>`
-    : `<div class="placeholder">Vidéo à venir<br>— colle l'ID YouTube dans SUJETS[${i}].youtubeId —</div>`;
+       </a>`;
+  } else {
+    embed = `<div class="placeholder">Vidéo à venir<br>— colle l'ID Vimeo ou YouTube dans SUJETS[${i}] —</div>`;
+  }
   panel.innerHTML = `
     <div class="panel-inner">
       <div class="video-slot">${embed}</div>
       <div class="meta-line"><span>${s.date}</span><span>${s.category}</span></div>
     </div>
   `;
+
+  if (s.vimeoId) {
+    const thumbBtn = panel.querySelector('.video-thumb');
+    thumbBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const slot = thumbBtn.closest('.video-slot');
+      slot.innerHTML = `<iframe
+          src="https://player.vimeo.com/video/${s.vimeoId}?autoplay=1&title=0&byline=0&portrait=0"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+          allowfullscreen></iframe>`;
+    });
+  }
 
   function toggle(){
     const isOpen = row.classList.toggle('open');
