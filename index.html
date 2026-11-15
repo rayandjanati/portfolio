@@ -30,12 +30,12 @@ h1 em{font-weight:500;color:var(--accent)}
 .btn{display:inline-flex;align-items:center;gap:12px;padding:14px 19px;text-decoration:none;font-size:13px;font-weight:600;border:1px solid var(--ink);transition:.2s}
 .btn.primary{background:var(--ink);color:#fff}
 .btn:hover{transform:translateY(-2px);background:var(--accent);border-color:var(--accent);color:#fff}
-.hero-aside{border-left:1px solid var(--line);padding:8px 0 8px 24px}
+.hero-logo{display:block;width:min(250px,58vw);height:auto;margin-top:28px;border-radius:2px;box-shadow:0 8px 24px #17181618}\n.hero-aside{border-left:1px solid var(--line);padding:8px 0 8px 24px}
 .hero-aside .label{font:10px 'DM Mono';text-transform:uppercase;letter-spacing:.13em;color:var(--muted)}
 .hero-aside p{font:italic 22px/1.35 'Playfair Display';margin-top:14px}
 .hero-aside small{display:block;margin-top:18px;font:11px 'DM Mono';color:var(--muted);line-height:1.8}
 .section-head{display:flex;align-items:end;justify-content:space-between;padding:17px 0;border-bottom:1px solid var(--ink);margin-top:10px}
-.section-head h2{font:500 11px 'DM Mono';letter-spacing:.14em;text-transform:uppercase}.section-brand{display:flex;align-items:center;gap:14px}.tf1-mark{display:inline-flex;align-items:center;justify-content:center;width:88px;height:50px;flex:0 0 88px;overflow:hidden;background:linear-gradient(112deg,#0637ad 0%,#3156c7 34%,#8c399b 65%,#df142d 100%);box-shadow:0 5px 16px #182d5530;position:relative}.tf1-mark svg{display:block;width:100%;height:100%}.tf1-mark svg text{font-family:Arial,Helvetica,sans-serif;font-size:39px;font-weight:900;letter-spacing:-4px;fill:#fff}
+.section-head h2{font:500 11px 'DM Mono';letter-spacing:.14em;text-transform:uppercase}.section-brand{display:flex;align-items:center;gap:14px}
 .section-head span{font:11px 'DM Mono';color:var(--muted)}
 .rundown{border-bottom:1px solid var(--line)}
 .item{border-bottom:1px solid var(--line)}
@@ -79,7 +79,7 @@ footer{padding:22px 0;display:flex;justify-content:space-between;color:var(--mut
 <header class="hero">
 <div>
 <div class="kicker">Journaliste · Paris</div>
-<h1>Raconter<br>le monde<span style="color:var(--accent)">.</span><br><em>Rayan Djanati</em></h1>
+<h1>Raconter<br>le monde<span style="color:var(--accent)">.</span><br><em>Rayan Djanati</em></h1>\n<img class="hero-logo" src="https://raw.githubusercontent.com/rayandjanati/portfolio/main/tf1-logo.svg" alt="Logo TF1">
 <p class="intro">Journaliste rédacteur, j’ai travaillé au sein des rédactions de TF1 et de LCI. Retrouvez ici une sélection de reportages que j’ai réalisés pour TF1.</p>
 <div class="actions">
 <a class="btn primary" href="#sujets">Découvrir mes sujets <span>↘</span></a>
@@ -90,7 +90,7 @@ footer{padding:22px 0;display:flex;justify-content:space-between;color:var(--mut
 <aside class="hero-aside"><div class="label">En quelques mots</div><p>Informer avec précision. Donner du sens aux images.</p><small>TF1 — Bonjour !<br>LCI — Rédaction<br>Français · Anglais · Espagnol · Farsi</small></aside>
 </header>
 <section id="sujets">
-<div class="section-head"><div class="section-brand"><span class="tf1-mark" role="img" aria-label="Logo TF1"><svg viewBox="0 0 88 50" aria-hidden="true"><text x="5" y="39">TF1</text></svg></span><h2>Reportages réalisés pour TF1</h2></div></div>
+<div class="section-head"><h2>Reportages réalisés pour TF1</h2></div>
 <div class="rundown" id="rundownList"></div>
 </section>
 <section class="cv-section" id="cv"><div class="wrap"><div class="section-head"><h2>Mon CV</h2><span>Rayan Djanati</span></div><div class="cv-frame"><iframe src="CV%20Rayan%20Djanati%202026.pdf#toolbar=0&navpanes=0" title="CV de Rayan Djanati"></iframe></div></div></section>
