@@ -35,7 +35,7 @@ h1 em{font-weight:500;color:var(--accent)}
 .hero-aside p{font:italic 22px/1.35 'Playfair Display';margin-top:14px}
 .hero-aside small{display:block;margin-top:18px;font:11px 'DM Mono';color:var(--muted);line-height:1.8}
 .section-head{display:flex;align-items:end;justify-content:space-between;padding:17px 0;border-bottom:1px solid var(--ink);margin-top:10px}
-.section-head h2{font:500 11px 'DM Mono';letter-spacing:.14em;text-transform:uppercase}.section-brand{display:flex;align-items:center;gap:14px}.tf1-mark{display:inline-flex;align-items:center;justify-content:center;width:64px;height:38px;flex:0 0 64px;border-radius:2px;background:linear-gradient(110deg,#0876c9 0%,#5368bd 50%,#ed4e55 100%);color:#fff;font:700 23px/1 'DM Sans';letter-spacing:-.09em;box-shadow:none}
+.section-head h2{font:500 11px 'DM Mono';letter-spacing:.14em;text-transform:uppercase}.section-brand{display:flex;align-items:center;gap:14px}.tf1-mark{display:inline-flex;align-items:center;justify-content:center;width:76px;height:44px;flex:0 0 76px;border-radius:2px;background:linear-gradient(112deg,#063cae 0%,#304fc0 34%,#8d3f9e 64%,#df172c 100%);color:#fff;font:900 27px/1 Arial,sans-serif;letter-spacing:-.11em;text-shadow:0 1px 1px #0002;box-shadow:0 5px 14px #182d5526;transform:skew(-3deg)}
 .section-head span{font:11px 'DM Mono';color:var(--muted)}
 .rundown{border-bottom:1px solid var(--line)}
 .item{border-bottom:1px solid var(--line)}
@@ -80,7 +80,7 @@ footer{padding:22px 0;display:flex;justify-content:space-between;color:var(--mut
 <div>
 <div class="kicker">Journaliste · Paris</div>
 <h1>Raconter<br>le monde<span style="color:var(--accent)">.</span><br><em>Rayan Djanati</em></h1>
-<p class="intro">Journaliste rédacteur, je conçois et réalise des sujets pour la télévision. Retrouvez ici une sélection de reportages réalisés pour TF1.</p>
+<p class="intro">Journaliste rédacteur, j’ai travaillé au sein des rédactions de TF1 et de LCI. Retrouvez ici une sélection de reportages que j’ai réalisés pour TF1.</p>
 <div class="actions">
 <a class="btn primary" href="#sujets">Découvrir mes sujets <span>↘</span></a>
 <a class="btn" href="mailto:rayan.djanati@gmail.com">Me contacter <span>↗</span></a>
@@ -116,7 +116,7 @@ const SUJETS=[
 {title:"Feuilles d'automne en été",category:"France",date:"",vimeoId:"1218871548"}
 ];
 const list=document.getElementById('rundownList');
-SUJETS.forEach((s,i)=>{
+SUJETS.forEach((s)=>{
  const item=document.createElement('article');item.className='item';
  const btn=document.createElement('button');btn.type='button';btn.setAttribute('aria-expanded','false');
  btn.innerHTML='<span class="title"></span><span class="category"></span><span class="plus">+</span>';
