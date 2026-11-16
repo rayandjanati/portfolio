@@ -123,19 +123,22 @@ SUJETS.forEach((s)=>{
  const thumb=document.createElement('button');thumb.type='button';thumb.className='thumb';thumb.setAttribute('aria-label','Lire '+s.title);thumb.style.backgroundImage='url(https://vumbnail.com/'+s.vimeoId+'_large.jpg)';
  const title=document.createElement('div');title.className='title';title.textContent=s.title;
  const category=document.createElement('div');category.className='category';category.textContent=s.category;
- const panel=document.createElement('div');panel.className='panel';
  const video=document.createElement('div');video.className='video';
  thumb.addEventListener('click',()=>{
    const wasOpen=item.classList.contains('open');
-   document.querySelectorAll('.item.open').forEach(el=>{el.classList.remove('open');const p=el.querySelector('.panel');if(p)p.innerHTML=''});
+   document.querySelectorAll('.item.open').forEach(el=>{
+     el.classList.remove('open');
+     const oldVideo=el.querySelector('.video');
+     if(oldVideo && el._thumb) el.replaceChild(el._thumb,oldVideo);
+   });
    if(!wasOpen){
      item.classList.add('open');
      video.innerHTML='<iframe title="Reportage '+s.title.replace(/"/g,'')+'" src="https://player.vimeo.com/video/'+s.vimeoId+'?autoplay=1&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
-     panel.appendChild(video);
+     item.replaceChild(video,thumb);
    }
  });
- panel.appendChild(video);
- item.append(thumb,title,category,panel);list.appendChild(item);
+ item._thumb=thumb;
+ item.append(thumb,title,category);list.appendChild(item);
 });
 </script>
 </body>
